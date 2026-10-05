@@ -17,7 +17,9 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
+    // Minecraft 26.1+ ships unobfuscated, so no mapping dependency is declared.
+    // (The original project still used loom.officialMojangMappings(), which no longer
+    //  exists for 26.2 and made the build fail.)
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }

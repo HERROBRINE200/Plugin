@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "highenergy",
+  "version": "${version}",
+  "name": "High Energy",
+  "description": "High Energy combat system: Energy pool, 10 powers, cooldowns, guide books and admin commands.",
+  "authors": ["Gamerlegend"],
+  "contact": {
+    "sources": "https://github.com/HERROBRINE200/Plugin"
+  },
+  "license": "All rights reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.gamerlegend.highenergy.HighEnergyMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

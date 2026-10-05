@@ -1,0 +1,38 @@
+name: HighEnergy
+version: '1.0.0'
+main: com.gamerlegend.highenergy.HighEnergyPlugin
+api-version: '1.21'
+authors: [Gamerlegend]
+description: High Energy combat system - Energy pool, 10 powers, cooldowns and guide books.
+website: https://github.com/HERROBRINE200/Plugin
+folia-supported: false
+
+commands:
+  energy:
+    description: High Energy main command (status, powers, select, guide, admin).
+    usage: |
+      /energy
+      /energy powers
+      /energy select <power>
+      /energy guide book <english|hindi>
+      /energy guide information <english|hindi>
+      /energy admin give|take|set|setmax <player> <amount>
+      /energy admin refill <player>
+      /energy reload
+    aliases: [he, highenergy]
+    permission: highenergy.use
+    permission-message: You do not have permission to use High Energy.
+
+permissions:
+  highenergy.use:
+    description: Use /energy, select powers and activate them.
+    default: true
+  highenergy.admin:
+    description: Use /energy admin ... and /energy reload.
+    default: op
+  highenergy.*:
+    description: All High Energy permissions.
+    default: op
+    children:
+      highenergy.use: true
+      highenergy.admin: true

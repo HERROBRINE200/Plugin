@@ -1,0 +1,58 @@
+# ===========================================================
+#  High Energy - Paper plugin configuration
+#  Every default below matches the original High Energy Fabric mod.
+# ===========================================================
+
+energy:
+  # Maximum Energy a player starts with (the mod used 200).
+  default-max: 200
+  # Energy restored every "regen-interval-ticks" ticks (mod: 3 every 10 ticks = 6/second).
+  regen-amount: 3
+  regen-interval-ticks: 10
+  # Show the Energy bar on the action bar while sneaking.
+  action-bar: true
+
+activation:
+  # The mod activated the selected power on a sneak + use interaction.
+  require-sneak: true
+  sneak-right-click: true
+  sneak-left-click: true
+
+storage:
+  # Energy, maximum Energy and the selected power are stored in playerdata.yml.
+  # Auto-save interval in ticks (6000 ticks = 5 minutes). Data is also saved on
+  # quit, on /energy admin changes and on server shutdown.
+  auto-save-interval-ticks: 6000
+
+# Per-power Energy cost and cooldown (in ticks, 20 ticks = 1 second).
+powers:
+  dash:
+    cost: 15
+    cooldown-ticks: 30
+  strike:
+    cost: 20
+    cooldown-ticks: 40
+  shockwave:
+    cost: 30
+    cooldown-ticks: 60
+  shield:
+    cost: 25
+    cooldown-ticks: 100
+  lightning:
+    cost: 40
+    cooldown-ticks: 100
+  pull:
+    cost: 25
+    cooldown-ticks: 60
+  blast:
+    cost: 35
+    cooldown-ticks: 50
+  speed:
+    cost: 20
+    cooldown-ticks: 80
+  regen:
+    cost: 30
+    cooldown-ticks: 100
+  overdrive:
+    cost: 80
+    cooldown-ticks: 300

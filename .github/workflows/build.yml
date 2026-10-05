@@ -1,0 +1,52 @@
+name: Build High Energy
+
+on:
+  push:
+    branches: [ "arena/01a10beb-plugin", "main" ]
+  workflow_dispatch:
+
+jobs:
+  fabric:
+    name: Fabric mod (Minecraft 26.2)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.5.1'
+      - name: Build
+        working-directory: source/HighEnergy-Fabric
+        run: gradle build --no-daemon --stacktrace
+      - name: Rename artifact
+        working-directory: source/HighEnergy-Fabric
+        run: |
+          ls -l build/libs
+          cp "$(ls build/libs/*.jar | grep -v -- '-sources' | grep -v -- '-dev' | head -1)" HighEnergy-Mod.jar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HighEnergy-Mod
+          path: source/HighEnergy-Fabric/HighEnergy-Mod.jar
+
+  paper:
+    name: Paper plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+      - name: Build
+        working-directory: source/HighEnergy-Paper
+        run: gradle build --no-daemon --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HighEnergy-Plugin
+          path: source/HighEnergy-Paper/build/libs/HighEnergy-Plugin.jar

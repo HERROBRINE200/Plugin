@@ -7,7 +7,7 @@ on:
       - arena/01a10bee-plugin
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-and-package:
@@ -136,3 +136,18 @@ jobs:
           path: HighEnergy-Final.zip
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish verified ZIP to session branch
+        if: github.ref == 'refs/heads/arena/01a10bee-plugin'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add HighEnergy-Final.zip
+          if git diff --cached --quiet; then
+            echo 'Verified package is already current.'
+            exit 0
+          fi
+          git commit -m 'Add verified final High Energy package [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"

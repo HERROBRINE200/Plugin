@@ -11,7 +11,7 @@ The supplied source project specified these exact versions, and this project pre
 - Fabric API **0.158.0+26.2**
 - Fabric Loom **1.18-SNAPSHOT**
 - Java **25**
-- Gradle wrapper **9.5.1**
+- Gradle wrapper **9.7.0**
 
 ## Build
 

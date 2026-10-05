@@ -15,7 +15,7 @@ The versions below are preserved from the supplied project's `gradle.properties`
 | Fabric API | **0.158.0+26.2** |
 | Fabric Loom (build only) | **1.18-SNAPSHOT** |
 | Java | **25** |
-| Gradle wrapper (build only) | **9.5.1** |
+| Gradle wrapper (build only) | **9.7.0** |
 
 ### Paper edition
 
@@ -26,7 +26,7 @@ The versions below are preserved from the supplied project's `gradle.properties`
 | Paper API used to compile | **26.2.build.129-stable** |
 | `api-version` in `plugin.yml` | **26.2** |
 | Java | **25** |
-| Gradle wrapper (build only) | **9.5.1** |
+| Gradle wrapper (build only) | **9.7.0** |
 
 Paper forks that preserve the Paper 26.2 API may work, but Paper 26.2 is the tested/compiled target.
 
@@ -176,7 +176,7 @@ Power values are intentionally not configurable so both editions retain the supp
 
 ## Building from source
 
-Each source ZIP expands to one independent Gradle project and includes Gradle 9.5.1 wrapper scripts and wrapper JAR.
+Each source ZIP expands to one independent Gradle project and includes Gradle 9.7.0 wrapper scripts and wrapper JAR.
 
 Prerequisites: an internet connection and Java 25.
 

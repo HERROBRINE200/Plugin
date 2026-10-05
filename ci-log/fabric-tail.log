@@ -20,7 +20,7 @@ Note: Recompile with -Xlint:deprecation for details.
 2 errors
 
 > Task :compileJava FAILED
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791203033414.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791203129330.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/build/reports/problems/problems-report.html
 
@@ -225,5 +225,5 @@ Note: Recompile with -Xlint:deprecation for details.
 	... 25 more
 
 
-BUILD FAILED in 36s
+BUILD FAILED in 59s
 1 actionable task: 1 executed

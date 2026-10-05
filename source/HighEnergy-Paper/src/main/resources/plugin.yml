@@ -1,0 +1,22 @@
+name: HighEnergy
+version: '${version}'
+main: com.gamerlegend.highenergy.paper.HighEnergyPlugin
+description: Persistent Energy combat and powers for Paper 26.2
+author: Gamerlegend
+api-version: '26.2'
+load: POSTWORLD
+
+commands:
+  energy:
+    description: View and control the High Energy system
+    usage: /energy [powers|select|guide|admin]
+    aliases: [highenergy]
+    permission: highenergy.use
+
+permissions:
+  highenergy.use:
+    description: Use High Energy commands and powers
+    default: true
+  highenergy.admin:
+    description: Use /energy admin give, take, set, refill and setmax
+    default: op

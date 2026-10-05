@@ -1,0 +1,17 @@
+# Gradle build state and outputs
+.gradle/
+**/.gradle/
+**/build/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Runtime server/mod data
+run/
+server/
+logs/
+
+# Packaging workspace (the final ZIP is intentionally committed)
+release-work/

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "highenergy",
+  "version": "${version}",
+  "name": "High Energy",
+  "description": "A persistent Energy combat and power system for Minecraft Fabric 26.2.",
+  "authors": [
+    "Gamerlegend"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.gamerlegend.highenergy.HighEnergyMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

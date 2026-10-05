@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.gamerlegend'
+version = project.plugin_version
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'papermc'
+        url = uri('https://repo.papermc.io/repository/maven-public/')
+    }
+}
+
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:${project.paper_api_version}"
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 25
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('plugin.yml') {
+        expand 'version': project.version
+    }
+}
+
+jar {
+    archiveFileName = 'HighEnergy-Plugin.jar'
+}
+
+tasks.register('validatePluginYml') {
+    inputs.file('src/main/resources/plugin.yml')
+    doLast {
+        def yml = file('src/main/resources/plugin.yml').getText('UTF-8')
+        ['name: HighEnergy', 'main: com.gamerlegend.highenergy.paper.HighEnergyPlugin',
+         "api-version: '26.2'", 'energy:', 'highenergy.admin:'].each { required ->
+            if (!yml.contains(required)) {
+                throw new GradleException("plugin.yml is missing: ${required}")
+            }
+        }
+    }
+}
+
+check.dependsOn validatePluginYml

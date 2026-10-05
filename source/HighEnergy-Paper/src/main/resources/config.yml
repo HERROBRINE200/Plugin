@@ -1,0 +1,18 @@
+# High Energy Paper configuration
+energy:
+  # New players start full at this maximum. Existing players keep their saved maximum.
+  default-maximum: 200
+  # Original intended regeneration: 3 Energy every 20 ticks (3 per second).
+  regeneration-amount: 3
+  regeneration-interval-ticks: 20
+  show-action-bar: true
+
+activation:
+  # The original control is sneak + left-click.
+  require-sneaking: true
+  # Also preserves the supplied Fabric project's sneak-use (right-click) behavior.
+  allow-right-click-fallback: true
+
+data:
+  # Flush dirty player data this often in addition to quit and shutdown saves.
+  autosave-interval-ticks: 100

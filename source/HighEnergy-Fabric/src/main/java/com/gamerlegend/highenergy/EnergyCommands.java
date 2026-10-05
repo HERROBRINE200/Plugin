@@ -31,8 +31,13 @@ import java.util.List;
  */
 public final class EnergyCommands {
 
-    /** Vanilla permission level required for every {@code /energy admin ...} branch. */
-    public static final int ADMIN_PERMISSION_LEVEL = 2;
+    /**
+     * Permission required for every {@code /energy admin ...} branch:
+     * {@code LEVEL_GAMEMASTERS} is the vanilla permission level 2 (the level the
+     * original mod used via {@code source.hasPermission(2)}).
+     */
+    public static final net.minecraft.server.permissions.PermissionCheck ADMIN_PERMISSION =
+            Commands.LEVEL_GAMEMASTERS;
 
     private EnergyCommands() {
     }
@@ -73,7 +78,7 @@ public final class EnergyCommands {
                                         .executes(ctx -> information(ctx,
                                                 StringArgumentType.getString(ctx, "language"))))))
                 .then(Commands.literal("admin")
-                        .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
+                        .requires(Commands.hasPermission(ADMIN_PERMISSION))
                         .then(Commands.literal("give")
                                 .then(Commands.argument("player", EntityArgument.player())
                                         .then(Commands.argument("amount", IntegerArgumentType.integer(1))

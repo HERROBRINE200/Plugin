@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
@@ -130,7 +130,7 @@ public final class PowerSystem {
                 Vec3 at = target != null
                         ? target.position()
                         : player.position().add(player.getLookAngle().scale(8));
-                LightningBolt bolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
+                LightningBolt bolt = new LightningBolt(EntityTypes.LIGHTNING_BOLT, level);
                 bolt.setPos(at.x, at.y, at.z);
                 level.addFreshEntity(bolt);
                 burst(level, at, ParticleTypes.ELECTRIC_SPARK, 80);

@@ -5,11 +5,6 @@ Daemon will be stopped at the end of the build
 Fabric Loom: 1.18.2
 
 > Task :compileJava
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java:103: error: cannot find symbol
-        ServerLevel level = player.serverLevel();
-                                  ^
-  symbol:   method serverLevel()
-  location: variable player of type ServerPlayer
 /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java:133: error: cannot find symbol
                 LightningBolt bolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
                                                                  ^
@@ -20,37 +15,12 @@ Fabric Loom: 1.18.2
                                                   ^
   symbol:   method hasPermission(int)
   location: variable source of type CommandSourceStack
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:86: error: cannot find symbol
-                                                            + " \u00a7bEnergy to \u00a7f" + target.getGameProfile().getName());
-                                                                                                                   ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:100: error: cannot find symbol
-                                                            + " \u00a7bEnergy from \u00a7f" + target.getGameProfile().getName());
-                                                                                                                     ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:111: error: cannot find symbol
-                                                            + target.getGameProfile().getName()
-                                                                                     ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:122: error: cannot find symbol
-                                                    + target.getGameProfile().getName() + "\u00a7b to \u00a7f"
-                                                                             ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:137: error: cannot find symbol
-                                                            + target.getGameProfile().getName()
-                                                                                     ^
-  symbol:   method getName()
-  location: class GameProfile
 Note: /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
-8 errors
+2 errors
 
 > Task :compileJava FAILED
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791202945501.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791203033414.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/build/reports/problems/problems-report.html
 
@@ -59,49 +29,19 @@ FAILURE: Build failed with an exception.
 * What went wrong:
 Execution failed for task ':compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
 > Compilation failed; see the compiler output below.
-  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java:103: error: cannot find symbol
-          ServerLevel level = player.serverLevel();
-                                    ^
-    symbol:   method serverLevel()
-    location: variable player of type ServerPlayer
-  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:76: error: cannot find symbol
-                          .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
-                                                    ^
-    symbol:   method hasPermission(int)
-    location: variable source of type CommandSourceStack
-  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:86: error: cannot find symbol
-                                                              + " \u00a7bEnergy to \u00a7f" + target.getGameProfile().getName());
-                                                                                                                     ^
-    symbol:   method getName()
-    location: class GameProfile
-  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:100: error: cannot find symbol
-                                                              + " \u00a7bEnergy from \u00a7f" + target.getGameProfile().getName());
-                                                                                                                       ^
-    symbol:   method getName()
-    location: class GameProfile
-  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:111: error: cannot find symbol
-                                                              + target.getGameProfile().getName()
-                                                                                       ^
-    symbol:   method getName()
-    location: class GameProfile
-  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:122: error: cannot find symbol
-                                                      + target.getGameProfile().getName() + "\u00a7b to \u00a7f"
-                                                                               ^
-    symbol:   method getName()
-    location: class GameProfile
-  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:137: error: cannot find symbol
-                                                              + target.getGameProfile().getName()
-                                                                                       ^
-    symbol:   method getName()
-    location: class GameProfile
   /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java:133: error: cannot find symbol
                   LightningBolt bolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
                                                                    ^
     symbol:   variable LIGHTNING_BOLT
     location: class EntityType
+  /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:76: error: cannot find symbol
+                          .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
+                                                    ^
+    symbol:   method hasPermission(int)
+    location: variable source of type CommandSourceStack
   Note: /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java uses or overrides a deprecated API.
   Note: Recompile with -Xlint:deprecation for details.
-  8 errors
+  2 errors
 
 * Try:
 > Check your code and dependencies to fix the compilation error(s)
@@ -138,11 +78,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:65)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler output below.
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java:103: error: cannot find symbol
-        ServerLevel level = player.serverLevel();
-                                  ^
-  symbol:   method serverLevel()
-  location: variable player of type ServerPlayer
 /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java:133: error: cannot find symbol
                 LightningBolt bolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
                                                                  ^
@@ -153,34 +88,9 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
                                                   ^
   symbol:   method hasPermission(int)
   location: variable source of type CommandSourceStack
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:86: error: cannot find symbol
-                                                            + " \u00a7bEnergy to \u00a7f" + target.getGameProfile().getName());
-                                                                                                                   ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:100: error: cannot find symbol
-                                                            + " \u00a7bEnergy from \u00a7f" + target.getGameProfile().getName());
-                                                                                                                     ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:111: error: cannot find symbol
-                                                            + target.getGameProfile().getName()
-                                                                                     ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:122: error: cannot find symbol
-                                                    + target.getGameProfile().getName() + "\u00a7b to \u00a7f"
-                                                                             ^
-  symbol:   method getName()
-  location: class GameProfile
-/home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/EnergyCommands.java:137: error: cannot find symbol
-                                                            + target.getGameProfile().getName()
-                                                                                     ^
-  symbol:   method getName()
-  location: class GameProfile
 Note: /home/runner/work/Plugin/Plugin/source/HighEnergy-Fabric/src/main/java/com/gamerlegend/highenergy/PowerSystem.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
-8 errors
+2 errors
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:88)
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:49)
 	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.delegateAndHandleErrors(NormalizingJavaCompiler.java:98)
@@ -315,5 +225,5 @@ Note: Recompile with -Xlint:deprecation for details.
 	... 25 more
 
 
-BUILD FAILED in 38s
+BUILD FAILED in 36s
 1 actionable task: 1 executed

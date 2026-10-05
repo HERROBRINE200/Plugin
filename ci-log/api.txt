@@ -1,0 +1,22 @@
+minecraft jar: /home/runner/.gradle/caches/fabric-loom/26.2/minecraft-merged.jar
+=== net.minecraft.world.entity.EntityType
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.EntityType<?>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.entity.EntityType<?>> STREAM_CODEC;
+=== net.minecraft.commands.CommandSourceStack
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_PLAYER;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_ENTITY;
+  public net.minecraft.commands.CommandSourceStack(net.minecraft.commands.CommandSource, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2, net.minecraft.server.level.ServerLevel, net.minecraft.server.permissions.PermissionSet, java.lang.String, net.minecraft.network.chat.Component, net.minecraft.server.MinecraftServer, net.minecraft.world.entity.Entity);
+  public net.minecraft.commands.CommandSourceStack withPermission(net.minecraft.server.permissions.PermissionSet);
+  public net.minecraft.commands.CommandSourceStack withMaximumPermission(net.minecraft.server.permissions.PermissionSet);
+  public net.minecraft.server.permissions.PermissionSet permissions();
+=== references
+     6892  1980-02-01 00:00   net/minecraft/advancements/predicates/entity/LightningBoltPredicate.class
+     8226  1980-02-01 00:00   net/minecraft/client/renderer/entity/LightningBoltRenderer.class
+      572  1980-02-01 00:00   net/minecraft/client/renderer/entity/state/LightningBoltRenderState.class
+        0  2026-10-05 12:24   net/minecraft/references/
+     3354  1980-02-01 00:00   net/minecraft/references/BlockItemId.class
+    11802  1980-02-01 00:00   net/minecraft/references/BlockIds.class
+      210  1980-02-01 00:00   net/minecraft/references/package-info.class
+    38290  1980-02-01 00:00   net/minecraft/references/ItemIds.class
+    56293  1980-02-01 00:00   net/minecraft/references/BlockItemIds.class
+    14317  1980-02-01 00:00   net/minecraft/world/entity/LightningBolt.class

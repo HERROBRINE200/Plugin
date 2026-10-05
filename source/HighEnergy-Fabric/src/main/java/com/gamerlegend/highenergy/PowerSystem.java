@@ -100,7 +100,7 @@ public final class PowerSystem {
         }
         startCooldown(player, power);
 
-        ServerLevel level = player.serverLevel();
+        ServerLevel level = (ServerLevel) player.level();
         switch (power) {
             case DASH -> {
                 Vec3 look = player.getLookAngle().normalize();

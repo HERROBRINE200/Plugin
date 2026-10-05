@@ -83,7 +83,7 @@ public final class EnergyCommands {
                                                     EnergyManager.add(target, amount);
                                                     EnergyStorage.save();
                                                     feedback(ctx, "\u00a7b\u26a1 Gave \u00a7f" + amount
-                                                            + " \u00a7bEnergy to \u00a7f" + target.getGameProfile().getName());
+                                                            + " \u00a7bEnergy to \u00a7f" + target.getName().getString());
                                                     target.sendSystemMessage(Component.literal(
                                                             "\u00a7b\u26a1 You received \u00a7f" + amount + " \u00a7bEnergy."));
                                                     return 1;
@@ -97,7 +97,7 @@ public final class EnergyCommands {
                                                     EnergyManager.add(target, -amount);
                                                     EnergyStorage.save();
                                                     feedback(ctx, "\u00a7b\u26a1 Took \u00a7f" + amount
-                                                            + " \u00a7bEnergy from \u00a7f" + target.getGameProfile().getName());
+                                                            + " \u00a7bEnergy from \u00a7f" + target.getName().getString());
                                                     return 1;
                                                 }))))
                         .then(Commands.literal("set")
@@ -108,7 +108,7 @@ public final class EnergyCommands {
                                                     EnergyManager.set(target, IntegerArgumentType.getInteger(ctx, "amount"));
                                                     EnergyStorage.save();
                                                     feedback(ctx, "\u00a7b\u26a1 Set \u00a7f"
-                                                            + target.getGameProfile().getName()
+                                                            + target.getName().getString()
                                                             + "\u00a7b's Energy to \u00a7f" + EnergyManager.get(target));
                                                     return 1;
                                                 }))))
@@ -119,7 +119,7 @@ public final class EnergyCommands {
                                             EnergyManager.refill(target);
                                             EnergyStorage.save();
                                             feedback(ctx, "\u00a7b\u26a1 Refilled \u00a7f"
-                                                    + target.getGameProfile().getName() + "\u00a7b to \u00a7f"
+                                                    + target.getName().getString() + "\u00a7b to \u00a7f"
                                                     + EnergyManager.getMax(target) + " \u00a7bEnergy.");
                                             target.sendSystemMessage(Component.literal(
                                                     "\u00a7b\u26a1 Your Energy has been refilled."));
@@ -134,7 +134,7 @@ public final class EnergyCommands {
                                                             IntegerArgumentType.getInteger(ctx, "amount"));
                                                     EnergyStorage.save();
                                                     feedback(ctx, "\u00a7b\u26a1 Set \u00a7f"
-                                                            + target.getGameProfile().getName()
+                                                            + target.getName().getString()
                                                             + "\u00a7b's maximum Energy to \u00a7f"
                                                             + EnergyManager.getMax(target));
                                                     target.sendSystemMessage(Component.literal(

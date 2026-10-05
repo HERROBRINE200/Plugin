@@ -29,14 +29,26 @@ jobs:
           set -o pipefail
           mkdir -p "$GITHUB_WORKSPACE/ci-log"
           gradle build --no-daemon --stacktrace 2>&1 | tee "$GITHUB_WORKSPACE/ci-log/fabric.log"
+      - name: Inspect Minecraft API (debug)
+        if: always()
+        run: |
+          MC=$(find ~/.gradle/caches -name "minecraft-merged*.jar" | head -1)
+          echo "minecraft jar: $MC" >> ci-log/api.txt
+          for C in net.minecraft.world.entity.EntityType net.minecraft.commands.CommandSourceStack; do
+            echo "=== $C" >> ci-log/api.txt
+            javap -classpath "$MC" $C 2>&1 | grep -iE "lightning|permission|public static final" | head -40 >> ci-log/api.txt
+          done
+          echo "=== references" >> ci-log/api.txt
+          unzip -l "$MC" | grep -iE "references/|LightningBolt" | head -20 >> ci-log/api.txt
       - name: Publish build log
         if: always()
         run: |
+          mkdir -p ci-log
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           tail -c 60000 ci-log/fabric.log > ci-log/fabric-tail.log || true
           rm -f ci-log/fabric.log
-          git add -f ci-log/fabric-tail.log
+          git add -f ci-log/fabric-tail.log ci-log/api.txt
           git commit -m "ci: fabric build log [skip ci]" || exit 0
           git pull --rebase origin ${GITHUB_REF_NAME} || true
           git push origin HEAD:${GITHUB_REF_NAME}

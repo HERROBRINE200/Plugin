@@ -27,7 +27,7 @@ On Windows:
 gradlew.bat clean build
 ```
 
-The production remapped mod is `build/libs/HighEnergy-Mod.jar`.
+The production mod is `build/libs/HighEnergy-Mod.jar`. Minecraft 26.2 is deobfuscated, so this project correctly uses Loom's no-remap plugin.
 
 ## Runtime
 

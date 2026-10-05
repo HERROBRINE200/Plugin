@@ -162,6 +162,7 @@ Power values are intentionally not configurable so both editions retain the supp
 
 ## Important fixes and implementation notes
 
+- Corrected the supplied 26.2 Gradle setup to Loom's required no-remap plugin; Minecraft 26.2 no longer publishes mappings.
 - Added UUID-based persistence for Energy, maximum Energy, and selected power.
 - Corrected regeneration from the old code's accidental 3 Energy per 10 ticks (6/second) to the guide's documented **3/second**.
 - Replaced the old empty/custom-named book with actual written-book content and useful pages.
@@ -194,7 +195,7 @@ Windows:
 gradlew.bat clean build
 ```
 
-Output: `build/libs/HighEnergy-Mod.jar` (a Loom-remapped production JAR).
+Output: `build/libs/HighEnergy-Mod.jar`. Minecraft 26.2 is deobfuscated, so the Fabric source correctly uses Loom's no-remap plugin instead of trying to resolve mappings that no longer exist.
 
 ### Paper
 

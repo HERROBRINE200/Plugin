@@ -6,12 +6,6 @@ pluginManagement {
     }
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
-    repositories {
-        maven { url = 'https://maven.fabricmc.net/' }
-        mavenCentral()
-    }
-}
-
+// Loom adds the Minecraft libraries repository and the other repositories its
+// 26.2 no-remap classpath needs. Do not override those repositories here.
 rootProject.name = 'HighEnergy-Fabric'

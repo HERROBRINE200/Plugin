@@ -31,7 +31,7 @@ public final class HighEnergyMod implements ModInitializer {
                 EnergyManager.tick(player);
                 PowerSystem.tick(player);
                 if (serverTicks % 20 == 0) {
-                    player.displayClientMessage(EnergyManager.bar(player), true);
+                    player.sendOverlayMessage(EnergyManager.bar(player));
                 }
             }
             if (serverTicks % 100 == 0) {

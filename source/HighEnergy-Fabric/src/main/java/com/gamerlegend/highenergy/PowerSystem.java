@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
@@ -89,7 +89,7 @@ public final class PowerSystem {
             return;
         }
 
-        ServerLevel level = player.serverLevel();
+        ServerLevel level = player.level();
         switch (power) {
             case DASH -> {
                 Vec3 direction = player.getLookAngle().normalize();
@@ -116,7 +116,7 @@ public final class PowerSystem {
                 Vec3 position = target != null
                         ? target.position()
                         : player.position().add(player.getLookAngle().scale(8.0));
-                LightningBolt bolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
+                LightningBolt bolt = new LightningBolt(EntityTypes.LIGHTNING_BOLT, level);
                 bolt.setPos(position.x, position.y, position.z);
                 level.addFreshEntity(bolt);
                 burst(level, position, ParticleTypes.ELECTRIC_SPARK, 80);

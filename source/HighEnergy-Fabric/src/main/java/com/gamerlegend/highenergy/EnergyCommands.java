@@ -11,6 +11,7 @@ import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.permissions.Permissions;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -61,7 +62,7 @@ public final class EnergyCommands {
             root.then(guide);
 
             LiteralArgumentBuilder<CommandSourceStack> admin = Commands.literal("admin")
-                    .requires(source -> source.hasPermission(2))
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR))
                     .executes(context -> {
                         context.getSource().sendSystemMessage(Component.literal(
                                 "Admin: give, take, set, refill, setmax")

@@ -11,13 +11,13 @@ Build was configured to prefer settings repositories over project repositories b
 Fabric Loom: 1.18.2
 Build was configured to prefer settings repositories over project repositories but repository 'maven' was added by build file 'build.gradle'
 Build was configured to prefer settings repositories over project repositories but repository 'MavenRepo2' was added by build file 'build.gradle'
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791202700271.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791202790492.json
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
 A problem occurred configuring root project 'HighEnergy-Fabric'.
-> Failed to setup Minecraft, java.lang.RuntimeException: Failed to find official mojang mappings for 26.2
+> Failed to setup Minecraft, java.lang.IllegalArgumentException: Configuration 'mappings' has no dependencies
 
 * Try:
 > Run with --info or --debug option to get more log output.
@@ -194,7 +194,7 @@ org.gradle.api.ProjectConfigurationException: A problem occurred configuring roo
 	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:65)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
-Caused by: java.lang.RuntimeException: Failed to setup Minecraft, java.lang.RuntimeException: Failed to find official mojang mappings for 26.2
+Caused by: java.lang.RuntimeException: Failed to setup Minecraft, java.lang.IllegalArgumentException: Configuration 'mappings' has no dependencies
 	at net.fabricmc.loom.util.ExceptionUtil.createDescriptiveWrapper(ExceptionUtil.java:59)
 	at net.fabricmc.loom.configuration.CompileConfiguration.lambda$run$1(CompileConfiguration.java:155)
 	at net.fabricmc.loom.configuration.CompileConfiguration.lambda$afterEvaluationWithService$0(CompileConfiguration.java:537)
@@ -227,16 +227,12 @@ Caused by: java.lang.RuntimeException: Failed to setup Minecraft, java.lang.Runt
 	at org.gradle.api.internal.project.DefaultProject.stepEvaluationListener(DefaultProject.java:1525)
 	at org.gradle.configuration.project.LifecycleProjectEvaluator$NotifyAfterEvaluate.run(LifecycleProjectEvaluator.java:253)
 	... 164 more
-Caused by: java.lang.RuntimeException: Failed to find official mojang mappings for 26.2
-	at net.fabricmc.loom.configuration.providers.mappings.mojmap.MojangMappingsSpec.createLayer(MojangMappingsSpec.java:48)
-	at net.fabricmc.loom.configuration.providers.mappings.mojmap.MojangMappingsSpec.createLayer(MojangMappingsSpec.java:36)
-	at net.fabricmc.loom.configuration.providers.mappings.LayeredMappingsProcessor.resolveLayers(LayeredMappingsProcessor.java:62)
-	at net.fabricmc.loom.configuration.providers.mappings.LayeredMappingsFactory.resolve(LayeredMappingsFactory.java:100)
-	at net.fabricmc.loom.configuration.providers.mappings.LayeredMappingsFactory.evaluate(LayeredMappingsFactory.java:84)
-	at net.fabricmc.loom.configuration.providers.mappings.LayeredMappingsFactory.afterEvaluate(LayeredMappingsFactory.java:72)
-	at net.fabricmc.loom.configuration.CompileConfiguration.provideMinecraft(CompileConfiguration.java:210)
+Caused by: java.lang.IllegalArgumentException: Configuration 'mappings' has no dependencies
+	at net.fabricmc.loom.configuration.DependencyInfo.create(DependencyInfo.java:55)
+	at net.fabricmc.loom.configuration.DependencyInfo.create(DependencyInfo.java:48)
+	at net.fabricmc.loom.configuration.CompileConfiguration.provideMinecraft(CompileConfiguration.java:213)
 	at net.fabricmc.loom.configuration.CompileConfiguration.lambda$run$1(CompileConfiguration.java:133)
 	... 193 more
 
 
-BUILD FAILED in 27s
+BUILD FAILED in 28s

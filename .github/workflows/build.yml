@@ -32,14 +32,19 @@ jobs:
       - name: Inspect Minecraft API (debug)
         if: always()
         run: |
+          mkdir -p ci-log
           MC=$(find ~/.gradle/caches -name "minecraft-merged*.jar" | head -1)
-          echo "minecraft jar: $MC" >> ci-log/api.txt
-          for C in net.minecraft.world.entity.EntityType net.minecraft.commands.CommandSourceStack; do
+          echo "minecraft jar: $MC" > ci-log/api.txt
+          for C in net.minecraft.commands.CommandSourceStack net.minecraft.server.permissions.PermissionSet net.minecraft.world.entity.LightningBolt; do
             echo "=== $C" >> ci-log/api.txt
-            javap -classpath "$MC" $C 2>&1 | grep -iE "lightning|permission|public static final" | head -40 >> ci-log/api.txt
+            javap -classpath "$MC" $C >> ci-log/api.txt 2>&1
           done
-          echo "=== references" >> ci-log/api.txt
-          unzip -l "$MC" | grep -iE "references/|LightningBolt" | head -20 >> ci-log/api.txt
+          echo "=== classes with EntityTypes / Lightning constants" >> ci-log/api.txt
+          unzip -l "$MC" | grep -iE "EntityTypes|/Commands.class|permissions/" | head -30 >> ci-log/api.txt
+          echo "=== javap EntityTypes" >> ci-log/api.txt
+          javap -classpath "$MC" net.minecraft.world.entity.EntityTypes 2>&1 | grep -i lightning >> ci-log/api.txt
+          echo "=== javap Commands" >> ci-log/api.txt
+          javap -classpath "$MC" net.minecraft.commands.Commands 2>&1 | grep -iE "LEVEL|Permission" >> ci-log/api.txt
       - name: Publish build log
         if: always()
         run: |

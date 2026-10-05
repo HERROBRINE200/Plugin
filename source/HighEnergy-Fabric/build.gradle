@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version "${loom_version}"
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
 }
 
@@ -11,39 +11,31 @@ base {
 }
 
 repositories {
-    maven { url = 'https://maven.fabricmc.net/' }
-    mavenCentral()
+    // Loom adds the Minecraft / Fabric repositories automatically.
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    // Minecraft 26.1+ ships unobfuscated, so no mapping dependency is declared.
-    // (The original project still used loom.officialMojangMappings(), which no longer
-    //  exists for 26.2 and made the build fail.)
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    // Minecraft 26.1+ ships unobfuscated, so no mappings dependency is declared any more.
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {
-    inputs.property 'version', project.version
+    def version = project.version
+    inputs.property 'version', version
     filesMatching('fabric.mod.json') {
-        expand 'version': project.version
+        expand 'version': version
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-    options.release = 25
+    it.options.encoding = 'UTF-8'
+    it.options.release = 25
 }
 
 java {
     withSourcesJar()
     sourceCompatibility = JavaVersion.VERSION_25
     targetCompatibility = JavaVersion.VERSION_25
-}
-
-jar {
-    from('LICENSE') {
-        rename { "${it}_${project.base.archivesName.get()}" }
-    }
 }

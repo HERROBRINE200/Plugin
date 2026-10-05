@@ -42,6 +42,11 @@ jobs:
               tail -n 180 fabric-build.log
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
+            diagnostic=$(tail -c 50000 fabric-build.log)
+            diagnostic=${diagnostic//'%'/'%25'}
+            diagnostic=${diagnostic//$'\r'/'%0D'}
+            diagnostic=${diagnostic//$'\n'/'%0A'}
+            echo "::error title=Fabric compiler output::$diagnostic"
           fi
           exit "$status"
 
@@ -59,6 +64,11 @@ jobs:
               tail -n 180 paper-build.log
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
+            diagnostic=$(tail -c 50000 paper-build.log)
+            diagnostic=${diagnostic//'%'/'%25'}
+            diagnostic=${diagnostic//$'\r'/'%0D'}
+            diagnostic=${diagnostic//$'\n'/'%0A'}
+            echo "::error title=Paper compiler output::$diagnostic"
           fi
           exit "$status"
 

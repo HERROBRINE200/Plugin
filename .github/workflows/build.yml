@@ -33,7 +33,7 @@ jobs:
         run: |
           set +e
           set -o pipefail
-          gradle --no-daemon -p source/HighEnergy-Fabric clean build --stacktrace 2>&1 | tee fabric-build.log
+          gradle --no-daemon -p source/HighEnergy-Fabric clean build 2>&1 | tee fabric-build.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
             {
@@ -42,7 +42,7 @@ jobs:
               tail -n 180 fabric-build.log
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
-            diagnostic=$(tail -c 50000 fabric-build.log)
+            diagnostic=$(tail -c 9000 fabric-build.log)
             diagnostic=${diagnostic//'%'/'%25'}
             diagnostic=${diagnostic//$'\r'/'%0D'}
             diagnostic=${diagnostic//$'\n'/'%0A'}
@@ -55,7 +55,7 @@ jobs:
         run: |
           set +e
           set -o pipefail
-          gradle --no-daemon -p source/HighEnergy-Paper clean build --stacktrace 2>&1 | tee paper-build.log
+          gradle --no-daemon -p source/HighEnergy-Paper clean build 2>&1 | tee paper-build.log
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
             {
@@ -64,7 +64,7 @@ jobs:
               tail -n 180 paper-build.log
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
-            diagnostic=$(tail -c 50000 paper-build.log)
+            diagnostic=$(tail -c 9000 paper-build.log)
             diagnostic=${diagnostic//'%'/'%25'}
             diagnostic=${diagnostic//$'\r'/'%0D'}
             diagnostic=${diagnostic//$'\n'/'%0A'}

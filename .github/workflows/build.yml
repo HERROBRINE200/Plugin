@@ -3,7 +3,7 @@ name: Build High Energy
 on:
   push:
     branches: [ "arena/01a10beb-plugin", "main" ]
-    paths-ignore: [ "ci-log/**" ]
+    paths-ignore: [ "ci-log/**", "dist/**" ]
   workflow_dispatch:
 
 permissions:
@@ -23,49 +23,27 @@ jobs:
         with:
           gradle-version: 'current'
       - name: Build
-        id: build
         working-directory: source/HighEnergy-Fabric
+        run: gradle build --no-daemon --stacktrace
+      - name: Collect artifact
         run: |
-          set -o pipefail
-          mkdir -p "$GITHUB_WORKSPACE/ci-log"
-          gradle build --no-daemon --stacktrace 2>&1 | tee "$GITHUB_WORKSPACE/ci-log/fabric.log"
-      - name: Inspect Minecraft API (debug)
-        if: always()
-        run: |
-          mkdir -p ci-log
-          MC=$(find ~/.gradle/caches -name "minecraft-merged*.jar" | head -1)
-          echo "minecraft jar: $MC" > ci-log/api.txt
-          for C in net.minecraft.commands.CommandSourceStack net.minecraft.server.permissions.PermissionSet net.minecraft.world.entity.LightningBolt; do
-            echo "=== $C" >> ci-log/api.txt
-            javap -classpath "$MC" $C >> ci-log/api.txt 2>&1
-          done
-          echo "=== classes with EntityTypes / Lightning constants" >> ci-log/api.txt
-          unzip -l "$MC" | grep -iE "EntityTypes|/Commands.class|permissions/" | head -30 >> ci-log/api.txt
-          echo "=== javap EntityTypes" >> ci-log/api.txt
-          javap -classpath "$MC" net.minecraft.world.entity.EntityTypes 2>&1 | grep -i lightning >> ci-log/api.txt
-          echo "=== javap Commands" >> ci-log/api.txt
-          javap -classpath "$MC" net.minecraft.commands.Commands 2>&1 | grep -iE "LEVEL|Permission" >> ci-log/api.txt
-      - name: Publish build log
-        if: always()
-        run: |
-          mkdir -p ci-log
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          tail -c 60000 ci-log/fabric.log > ci-log/fabric-tail.log || true
-          rm -f ci-log/fabric.log
-          git add -f ci-log/fabric-tail.log ci-log/api.txt
-          git commit -m "ci: fabric build log [skip ci]" || exit 0
-          git pull --rebase origin ${GITHUB_REF_NAME} || true
-          git push origin HEAD:${GITHUB_REF_NAME}
-      - name: Rename artifact
-        working-directory: source/HighEnergy-Fabric
-        run: |
-          ls -l build/libs
-          cp "$(ls build/libs/*.jar | grep -v -- '-sources' | grep -v -- '-dev' | head -1)" HighEnergy-Mod.jar
+          mkdir -p dist
+          ls -l source/HighEnergy-Fabric/build/libs
+          cp "$(ls source/HighEnergy-Fabric/build/libs/*.jar | grep -v -- '-sources' | grep -v -- '-dev' | head -1)" dist/HighEnergy-Mod.jar
       - uses: actions/upload-artifact@v4
         with:
           name: HighEnergy-Mod
-          path: source/HighEnergy-Fabric/HighEnergy-Mod.jar
+          path: dist/HighEnergy-Mod.jar
+      - name: Commit artifact
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add -f dist/HighEnergy-Mod.jar
+          git commit -m "ci: Fabric mod jar [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin ${GITHUB_REF_NAME} && git push origin HEAD:${GITHUB_REF_NAME} && break
+            sleep 7
+          done
 
   paper:
     name: Paper plugin
@@ -82,7 +60,22 @@ jobs:
       - name: Build
         working-directory: source/HighEnergy-Paper
         run: gradle build --no-daemon --stacktrace
+      - name: Collect artifact
+        run: |
+          mkdir -p dist
+          ls -l source/HighEnergy-Paper/build/libs
+          cp source/HighEnergy-Paper/build/libs/HighEnergy-Plugin.jar dist/HighEnergy-Plugin.jar
       - uses: actions/upload-artifact@v4
         with:
           name: HighEnergy-Plugin
-          path: source/HighEnergy-Paper/build/libs/HighEnergy-Plugin.jar
+          path: dist/HighEnergy-Plugin.jar
+      - name: Commit artifact
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add -f dist/HighEnergy-Plugin.jar
+          git commit -m "ci: Paper plugin jar [skip ci]" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin ${GITHUB_REF_NAME} && git push origin HEAD:${GITHUB_REF_NAME} && break
+            sleep 7
+          done
